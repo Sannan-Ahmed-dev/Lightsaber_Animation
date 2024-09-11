@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lisghtsaber.css">
+    <title>Lightsaber</title>
+</head>
+<body>
+    <div class="lightsaber">
+       
+       <div class="saberbutton">  </div>
+    </div>
+     <div class="handle"  onclick="activateLightsber(), changebuton(), newbuton(), changebuton3()" class="button"></div>
+     <div class="grip"></div>
+     
+ <div class="beam" id="lightsaberBeam"></div>
+
+ 
+  <div class="change-colors">
+
+  <input type="radio" id="green" name="color" checked="" onclick="changeLightsaberColor()">
+  <label for="green">Green</label>
+ 
+  <input type="radio" id="blue" name="color" checked=""  onclick="changeLightsaberColor()">
+  <label for="blue">blue</label>
+  
+  <input type="radio" id="red" name="color" checked=""  onclick="changeLightsaberColor()">
+  <label for="red">red</label>
+  
+  <input type="radio" id="purple" name="color" checked=""  onclick="changeLightsaberColor()">
+  <label for="purple">purple</label>
+ 
+  <input type="radio" id="black" name="color" checked=""  onclick="changeLightsaberColor()">
+  <label for="black">Black</label>
+ 
+  <input type="radio" id="white" name="color" checked=""  onclick="changeLightsaberColor()">
+  <label for="white">white</label>
+
+
+</div>
+
+    <button onclick="activateLightsaber(), changebutton(), newbutton(), changebutton3()" class="button" id="activatebtn2">
+      <audio id="myAudio">
+        <source src="lightsaber-ignition-6816.mp3" type="audio/mpeg">
+        
+      </audio></button>
+    <button onclick="closelightsaberbeam(), changebutton2() " class="close-button " id="closelightsaber" ></button>
+    
+    
+     <script>
+        function activateLightsaber() {
+            var lightsaberBeam = document.getElementById('lightsaberBeam');
+            lightsaberBeam.classList.toggle('activate');
+            void lightsaberBeam.offsetWidth;
+            lightsaberBeam.classList.remove('close-beam');
+
+        }
+        
+        function closelightsaberbeam() {
+            var lightsaberBeam = document.getElementById('lightsaberBeam');
+             lightsaberBeam.classList.remove('activate');
+            lightsaberBeam.classList.toggle('close-beam');
+           
+        }
+
+        
+
+       function newbutton() {
+            var closelightsaber = document.getElementById('closelightsaber');
+            closelightsaber.classList.toggle('deactivate');
+        }
+
+        function changebutton() {
+            var closelightsaber = document.getElementById('closelightsaber');
+            closelightsaber.classList.toggle('btnclose');
+        }
+        
+        function changebutton2() {
+            var closelightsaber = document.getElementById('closelightsaber');
+            closelightsaber.classList.toggle('deactivate');
+            activatebtn2.classList.remove('close2');
+            activatebtn2.classList.add('activate');
+
+           
+        }
+        
+        function changebutton3() {
+            var activatebtn2 = document.getElementById('activatebtn2');
+            activatebtn2.classList.toggle('close2');
+           
+           
+        }
+
+
+        // Select the lightsaber element
+const lightsaber = document.getElementById('lightsaberBeam');
+
+// Object with colors and glows for each checkbox
+const colorsAndGlows = {
+  blue: { color: 'blue', glow: '#0600ff 0px 0px 25px' },
+  green: { color: 'rgba(0, 255, 0, 1)', glow: '0 0 25px lime' },
+  red: { color: 'rgb(255 0 0 / 83%)', glow: '0 0 40px red' },
+  black: { color: 'black', glow: '0 0 25px white' },
+  white: { color: 'white', glow: '0 0 25px white' },
+  purple: { color: 'rgb(212 0 255 / 70%)', glow: '0 0 30px magenta' }
+};
+
+// Function to change the lightsaber color and glow
+function changeLightsaberColor() {
+  const colorCheckboxes = document.querySelectorAll('.change-colors [name="color"]');
+  
+  colorCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      if (this.checked) {
+        const colorId = this.id;
+        const { color, glow } = colorsAndGlows[colorId]; // Retrieve color and glow for the selected checkbox ID
+        lightsaber.style.backgroundColor = color; // Change the lightsaber color
+        lightsaber.style.boxShadow = glow; // Apply the box-shadow for the glow effect
+      }
+    });
+  });
+}
+
+// Call the function
+document.getElementById('activatebtn2').addEventListener('click', function() {
+  var audio = document.getElementById('myAudio');
+  audio.play();
+  audio.volume = 0.6; // Adjust the volume (0.5 = 50%)
+
+});
+
+        
+
+    </script>
+
+</body>
+</html>
